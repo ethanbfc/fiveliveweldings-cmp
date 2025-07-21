@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.ethanmurray.fiveliveweldings.ui.RootScreen
+import com.ethanmurray.fiveliveweldings.ui.resources.RootTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +15,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            RootScreen()
+            RootTheme {
+                RootScreen()
+            }
         }
     }
 }
