@@ -1,4 +1,4 @@
-package com.ethanmurray.fiveliveweldings.ui.components.Effects
+package com.ethanmurray.fiveliveweldings.ui.components.effects
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
