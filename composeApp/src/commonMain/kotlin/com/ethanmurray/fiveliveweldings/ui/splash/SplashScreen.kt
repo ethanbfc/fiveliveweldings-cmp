@@ -14,15 +14,34 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.ethanmurray.fiveliveweldings.ui.Screens
 import com.ethanmurray.fiveliveweldings.ui.components.PreviewSurface
+import com.ethanmurray.fiveliveweldings.ui.components.effects.ExecuteOnCreateEffect
+import com.ethanmurray.fiveliveweldings.ui.components.effects.ExecuteOnInstanceEffect
 import com.ethanmurray.fiveliveweldings.ui.resources.ColorPalette
+import com.ethanmurray.fiveliveweldings.viewmodel.splash.SplashViewModel
+import com.ethanmurray.fiveliveweldings.viewmodel.splash.SplashViewModel.State
 import fiveliveweldings.composeapp.generated.resources.Res
 import fiveliveweldings.composeapp.generated.resources.img_logo
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun SplashScreen() {
+fun SplashScreen(
+    navController: NavController
+) {
+    val viewModel = koinViewModel<SplashViewModel>()
+
+    ExecuteOnCreateEffect {
+        viewModel.fetch()
+    }
+
+    ExecuteOnInstanceEffect<State, State.Success>(viewModel.state) {
+        navController.navigate(Screens.Home.name)
+    }
+
     SplashScreenContent()
 }
 
